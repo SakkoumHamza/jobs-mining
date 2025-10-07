@@ -7,10 +7,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "linkedin"
+BOT_NAME = "StagiairesMA"
 
-SPIDER_MODULES = ["linkedin.spiders"]
-NEWSPIDER_MODULE = "linkedin.spiders"
+SPIDER_MODULES = ["stagiaires.spiders"]
+NEWSPIDER_MODULE = "stagiaires.spiders"
 
 ADDONS = {}
 
@@ -83,26 +83,8 @@ DOWNLOAD_DELAY = 5
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 
-# Set settings whose default value is deprecated to a future-proof value
-FEED_EXPORT_ENCODING = "utf-8"
 
 
-SCRAPEOPS_API_KEY = '514cbaf0-3be8-4f41-a53d-d8b532f58061'
-
-SCRAPEOPS_PROXY_ENABLED = True
-# Add In The ScrapeOps Monitoring Extension
-EXTENSIONS = {
-'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500, 
-}
-DOWNLOADER_MIDDLEWARES = {
-
-    ## ScrapeOps Monitor
-    'scrapeops_scrapy.middleware.retry.RetryMiddleware': 550,
-    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
-    
-    # ## Proxy Middleware
-    # 'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
-}
 
 custom_settings = {
         'FEEDS': { 'data/%(name)s_%(time)s.csv': { 'format': 'csv',}}
@@ -110,6 +92,6 @@ custom_settings = {
 
 
 ITEM_PIPELINES = {
-    'linkedin.pipelines.JsonWriterPipeline': 1,
+    'stagiaires.pipelines.JsonWriterPipeline': 1,
 }
 FEED_EXPORT_ENCODING = 'utf-8'
